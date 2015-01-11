@@ -9,5 +9,6 @@ dllPath = os.path.join(os.environ["HOMEDRIVE"], os.environ["HOMEPATH"], "Desktop
 def main():
     print(Comparer.writeinfos(dllPath))
 
+
 if __name__ == "__main__":
     main()
