@@ -1,8 +1,9 @@
 __author__ = 'Ulrich Kaiser'
 
+import os
 import Comparer
 
-dllPath = "C:\\Users\\Ulrich\Desktop\\Dll-Tool\\VSTPlugins 64 bit"
+dllPath = os.path.join(os.environ["HOMEDRIVE"], os.environ["HOMEPATH"], "Desktop/VSTPlugins 64 bit")
 
 
 def main():
