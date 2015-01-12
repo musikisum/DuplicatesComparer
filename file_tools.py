@@ -2,6 +2,19 @@ import os
 import win32api
 
 
+def read_folders_from_file():
+    lines = open("paths.txt", "r", encoding="UTF-8-sig").readlines()
+    path_list = []
+    for line in lines:
+        line = line.rstrip()
+        path = ""
+        pathparts = line.split("\\")
+        for p in pathparts:
+            path = os.path.join(path, p)
+        path_list.append(path)
+    return path_list
+
+
 def get_file_comparison_table(directories):
     file_table = {}
     for directory in directories:
@@ -30,10 +43,7 @@ def fill_file_info_dictionary(dictionary, path):
         dictionary[file] = sorted(dictionary[file] + [info_tuple], key=lambda item: item[1])
 
 
-path1 = os.path.join(os.environ["HOMEDRIVE"], os.environ["HOMEPATH"], "Desktop\\VSTPlugins 64 bit")
-path2 = os.path.join(os.environ["HOMEDRIVE"], os.environ["HOMEPATH"], "Desktop\\VSTPlugins")
-paths = [path1, path2]
-table = get_file_comparison_table(paths)
+table = get_file_comparison_table(read_folders_from_file())
 print(table)
 
 
