@@ -32,7 +32,15 @@ def fill_file_info_dictionary(dictionary, path):
         if file not in dictionary:
             dictionary[file] = []
         info_tuple = (path, get_version(filename))
-        dictionary[file] = sorted(dictionary[file] + [info_tuple], key=lambda item: item[1])
+        dictionary[file] = order_by_version(dictionary[file] + [info_tuple])
+
+
+def order_by_version(tuples):
+    tuples = sorted(tuples, key=lambda item: get_version_part(item[-1], 3), reverse=True)
+    tuples = sorted(tuples, key=lambda item: get_version_part(item[-1], 2), reverse=True)
+    tuples = sorted(tuples, key=lambda item: get_version_part(item[-1], 1), reverse=True)
+    tuples = sorted(tuples, key=lambda item: get_version_part(item[-1], 0), reverse=True)
+    return tuples
 
 
 def get_version_part(version, index):
