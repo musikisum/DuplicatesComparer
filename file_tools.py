@@ -4,15 +4,7 @@ import win32api
 
 def read_folders_from_file():
     lines = open("paths.txt", "r", encoding="UTF-8-sig").readlines()
-    path_list = []
-    for line in lines:
-        line = line.rstrip()
-        path = ""
-        pathparts = line.split("\\")
-        for p in pathparts:
-            path = os.path.join(path, p)
-        path_list.append(path)
-    return path_list
+    return [line.rstrip() for line in lines]
 
 
 def get_file_comparison_table(directories):
@@ -43,8 +35,19 @@ def fill_file_info_dictionary(dictionary, path):
         dictionary[file] = sorted(dictionary[file] + [info_tuple], key=lambda item: item[1])
 
 
-table = get_file_comparison_table(read_folders_from_file())
-print(table)
+def get_version_part(version, index):
+    parts = version.split('.')
+    return int(parts[index]) if (0 <= index < len(parts)) else None
+
+
+def main():
+    table = get_file_comparison_table(read_folders_from_file())
+    print(table)
+
+if __name__ == "__main__":
+    main()
+
+
 
 
 
