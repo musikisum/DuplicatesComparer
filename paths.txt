@@ -1,4 +1,3 @@
-C:\vstplugins
 C:\Program Files\Native Instruments\VSTPlugins 64 bit
 C:\Program Files\Native Instruments\VSTPlugins 32 bit
 C:\Program Files\Steinberg\VSTPlugins

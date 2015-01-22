@@ -1,4 +1,3 @@
-
 def get_html_firts_part(folders):
     return """<!DOCTYPE html>
         <html>
@@ -56,21 +55,32 @@ def format_folders(folders):
     return snippet
 
 
-def get_html_table():
-    return """ <table>
-          <tr>
-            <th>filename</th>
-            <th>version / last modification date</th>
-          </tr>
-          <tr>
-            <td>Miljöh</td>
-            <td>Kiez</td>
-          </tr>
-          <tr>
-            <td>Buletten</td>
-            <td>Frikadellen</td>
-          </tr>
-        </table>"""
+def get_html_table(dic):
+    str_arr = ["""<table><tr><th>filename</th><th>version / last modification date</th></tr>"""]
+    keys = sorted(dic.keys())
+    for key in keys:
+        str_arr.append("""<tr>""")
+        str_arr.append("""<td>""")
+        str_arr.append(key)
+        str_arr.append("""</td>""")
+        str_arr.append("""<td>""")
+        valuelist = dic[key]
+        index = 0
+        oldValue = ""
+        for value in valuelist:
+            if index == 0 or oldValue == value[1]:
+                str_arr.append("""<span style="color: green; font-weight:bold;">""")
+            else:
+                str_arr.append("""<span style="color: red; font-weight:bold;">""")
+            str_arr.append(value[1] + " - " + value[0])
+            str_arr.append("""</span>""")
+            str_arr.append("""<br/>""")
+            index += 1
+            oldValue = value[1]
+        str_arr.append("""</td>""")
+        str_arr.append("""</tr>""")
+    str_arr.append("""</table>""")
+    return "".join(str_arr)
 
 
 def get_html_last_part():
