@@ -48,6 +48,8 @@ def get_version_part(version, index):
     return int(parts[index]) if (0 <= index < len(parts)) else None
 
 
+
+
 def main():
     table = get_file_comparison_table(read_folders_from_file())
     print(table)
