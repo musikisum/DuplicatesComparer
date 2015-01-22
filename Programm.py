@@ -108,7 +108,7 @@ def format_folders(folders):
 
 
 def get_html_table(dic):
-    str_arr = ["""<table><tr><th>filename</th><th>version / last modification date</th></tr>"""]
+    str_arr = ["""<table><tr><th>filename</th><th>version / installation path</th></tr>"""]
     keys = sorted(dic.keys())
     for key in keys:
         str_arr.append("""<tr>""")
